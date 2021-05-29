@@ -1,35 +1,24 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Model;
 
-/**
- *
- * @author ygor.oliveira
- */
 public class LancheEspecial extends Lanche{
-    String brinde;
+    String acompanhamentoAdicional;
 
-    public LancheEspecial(String brinde, String nomeProduto, String modeloProduto, 
-                          String tipoProduto, double precoUnitario,  int qtdEstoque) {
+    public LancheEspecial(String nome, String sabor, String tipo, 
+                            double precoUnitario, int qtdEstoque, String acompanhamentoAdicional) {
+        super(nome, sabor, tipo, precoUnitario, qtdEstoque);
+        this.acompanhamentoAdicional = acompanhamentoAdicional;
         
-        super(nomeProduto, modeloProduto, tipoProduto, precoUnitario, qtdEstoque);
-        
-        this.brinde = brinde;
     }
 
-    public String getBrinde() {
-        return brinde;
+  
+    public String getAcompanhamentoAdicional() {
+        return acompanhamentoAdicional;
     }
 
-    public void setBrinde(String brinde) {
-        this.brinde = brinde;
+    public void setAcompanhamentoAdicional(String acompanhamentoAdicional) {
+        this.acompanhamentoAdicional = acompanhamentoAdicional;
     }
-    
-    
-    
-    
+  
     
 }

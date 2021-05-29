@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Model;
 
 import java.util.Date;
@@ -13,31 +9,27 @@ import java.util.Date;
  */
 public class VendaVip extends Venda implements ApplicableDiscount{
     
-    private double desconto;
+    private String brindeAdicional;
 
-    public VendaVip(double desconto, Date dataVenda, double precoTotal, int fkIdCliente,
+    public VendaVip(String brindeAdicional, Date dataVenda, double precoTotal, double desconto, int fkIdCliente,
                     String nome, String CPF, String telefone, String celular) {
         
-        super(dataVenda, precoTotal, fkIdCliente, nome, CPF, telefone, celular);        
-        this.desconto = desconto;
-    }
-    
-    
-    
-
-    public double getDesconto() {
-        return desconto;
+        super(dataVenda, precoTotal, desconto, fkIdCliente, nome, CPF, telefone, celular);        
+        this.brindeAdicional = brindeAdicional;
     }
 
-    public void setDesconto(double desconto) {
-        this.desconto = desconto;
+    public String getBrindeAdicional() {
+        return brindeAdicional;
     }
-    
+
+    public void setBrindeAdicional(String brindeAdicional) {
+        this.brindeAdicional = brindeAdicional;
+    }
 
     @Override
     public double calcularDesconto() {
         
-        return getDesconto()*getPrecoTotal();
+        return getPrecoTotal()-super.getDesconto();
         
     }  
     

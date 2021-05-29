@@ -2,6 +2,7 @@
 package DAO;
 
 import Model.Cliente;
+import Model.ClienteVip;
 import Utils.GerenciadorConexao;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -22,7 +23,7 @@ public class ClienteDAO {
      * @param obj Cliente - Objeto da classe cliente
      * @return <code>boolean</code> - true: Conseguiu salvar o cliente, false: Falha ao salvar, verifique a classe "GerenciadorConexao".
      */
-    public static boolean Salvar(Cliente obj){
+    public static boolean Salvar(ClienteVip obj){
        
         boolean retorno = false;
         Connection conexao = null;
@@ -31,7 +32,7 @@ public class ClienteDAO {
         try {
               conexao = GerenciadorConexao.abrirConexao();
 
-              instrucaoSQL = conexao.prepareStatement("INSERT INTO cliente (nome, nascimento, CPF, sexo, estado, UF, logradouro, numero_residencia, complemento, telefone, celular, email) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)"
+              instrucaoSQL = conexao.prepareStatement("INSERT INTO cliente (nome, nascimento, CPF, sexo, estado, UF, logradouro, numero_residencia, complemento, telefone, celular, email, vip, nivel_vip) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
                       , Statement.RETURN_GENERATED_KEYS);  //Caso queira retornar o ID
             
             //Adiciono os parâmetros ao meu comando SQL
@@ -47,6 +48,8 @@ public class ClienteDAO {
             instrucaoSQL.setString(10, obj.getTelefone());
             instrucaoSQL.setString(11, obj.getCelular());
             instrucaoSQL.setString(12, obj.getEmail());
+            instrucaoSQL.setString(13, obj.getVip());
+            instrucaoSQL.setInt(14, obj.getNivelVip());
             
             int linhasAfetadas = instrucaoSQL.executeUpdate();
             
@@ -88,12 +91,12 @@ public class ClienteDAO {
      * Método para listar os clientes do banco.
      * @return <code>boolean</code> - true: Conseguiu listar os clientes, false: Falha ao listar, verifique a classe "GerenciadorConexao".
      */
-     public static ArrayList<Cliente> listar() {
+     public static ArrayList<ClienteVip> listar() {
         
         boolean retorno = false;
         Connection conexao = null;
         PreparedStatement instrucaoSQL = null;
-        ArrayList<Cliente> listaClientes = new ArrayList<>();
+        ArrayList<ClienteVip> listaClientes = new ArrayList<>();
         ResultSet rs = null;
                 
         try {
@@ -105,7 +108,7 @@ public class ClienteDAO {
             
             while(rs.next())
             {
-                Cliente obj = new Cliente();
+                ClienteVip obj = new ClienteVip();
                 obj.setIdCliente(rs.getInt("id_cliente"));
                 obj.setNome(rs.getString("nome"));
                 obj.setNascimento(rs.getDate("nascimento"));
@@ -119,6 +122,8 @@ public class ClienteDAO {
                 obj.setTelefone(rs.getString("telefone"));
                 obj.setCelular(rs.getString("celular"));
                 obj.setEmail(rs.getString("email"));
+                obj.setVip(rs.getString("vip"));
+                obj.setNivelVip(rs.getInt("nivel_vip"));
                 
                 listaClientes.add(obj);
             }
@@ -166,7 +171,7 @@ public class ClienteDAO {
             
             while(rs.next())
             {
-                Cliente obj = new Cliente();
+                ClienteVip obj = new ClienteVip();
                 obj.setIdCliente(rs.getInt("id_cliente"));
                 obj.setNome(rs.getString("nome"));
                 obj.setNascimento(rs.getDate("nascimento"));
@@ -180,6 +185,8 @@ public class ClienteDAO {
                 obj.setTelefone(rs.getString("telefone"));
                 obj.setCelular(rs.getString("celular"));
                 obj.setEmail(rs.getString("email"));
+                obj.setVip(rs.getString("vip"));
+                obj.setNivelVip(rs.getInt("nivel_vip"));
                 
                 retorno = obj;
             }
@@ -210,11 +217,11 @@ public class ClienteDAO {
      * @param pNome String nome do cliente
      * @return <code>Arraylist</code> listaClientes - retorna uma lista com os dados do select.
      */
-     public static ArrayList<Cliente> listarPorNome(String pNome) {
+     public static ArrayList<ClienteVip> listarPorNome(String pNome) {
 
         Connection conexao = null;
         PreparedStatement instrucaoSQL = null;
-        ArrayList<Cliente> listaClientes = new ArrayList<>();
+        ArrayList<ClienteVip> listaClientes = new ArrayList<>();
         ResultSet rs = null;
                 
         try {
@@ -228,7 +235,7 @@ public class ClienteDAO {
             
             while(rs.next())
             {
-                Cliente obj = new Cliente();
+                ClienteVip obj = new ClienteVip();
                 obj.setIdCliente(rs.getInt("id_cliente"));
                 obj.setNome(rs.getString("nome"));
                 obj.setNascimento(rs.getDate("nascimento"));
@@ -242,6 +249,8 @@ public class ClienteDAO {
                 obj.setTelefone(rs.getString("telefone"));
                 obj.setCelular(rs.getString("celular"));
                 obj.setEmail(rs.getString("email"));
+                obj.setVip(rs.getString("vip"));
+                obj.setNivelVip(rs.getInt("nivel_vip"));
                 
                 listaClientes.add(obj);
             }}catch (SQLException | ClassNotFoundException ex ) {
@@ -318,7 +327,7 @@ public class ClienteDAO {
      * @param obj Cliente - Objeto da classe cliente
      * @return <code>boolean</code> - true: Conseguiu alterar o cliente, false: Falha ao alterar, verifique a classe "GerenciadorConexao".
      */
-      public static boolean atualizar(Cliente obj) {
+      public static boolean atualizar(ClienteVip obj) {
         
         boolean retorno = false;
         Connection conexao = null;
@@ -327,7 +336,7 @@ public class ClienteDAO {
         try {
             
             conexao = GerenciadorConexao.abrirConexao();
-            instrucaoSQL = conexao.prepareStatement("UPDATE cliente set nome = ?, nascimento = ?, CPF = ?, sexo = ?, estado = ?, UF = ?, logradouro = ?, numero_residencia = ?, complemento = ?, telefone = ?, celular = ?, email = ? WHERE id_cliente = ?");
+            instrucaoSQL = conexao.prepareStatement("UPDATE cliente set nome = ?, nascimento = ?, CPF = ?, sexo = ?, estado = ?, UF = ?, logradouro = ?, numero_residencia = ?, complemento = ?, telefone = ?, celular = ?, email = ?, vip = ?, nivel_vip = ? WHERE id_cliente = ?");
             
             //Adiciono os parâmetros ao meu comando SQL
             instrucaoSQL.setString(1, obj.getNome());
@@ -342,7 +351,9 @@ public class ClienteDAO {
             instrucaoSQL.setString(10, obj.getTelefone());
             instrucaoSQL.setString(11, obj.getCelular());
             instrucaoSQL.setString(12, obj.getEmail());
-            instrucaoSQL.setInt(13, obj.getIdCliente());
+            instrucaoSQL.setString(13, obj.getVip());
+            instrucaoSQL.setInt(14, obj.getNivelVip());
+            instrucaoSQL.setInt(15, obj.getIdCliente());
 
             
             int linhasAfetadas = instrucaoSQL.executeUpdate();

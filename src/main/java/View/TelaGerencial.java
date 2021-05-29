@@ -97,11 +97,11 @@ public class TelaGerencial extends javax.swing.JFrame {
         rbnFeminino = new javax.swing.JRadioButton();
         txtNascimento = new com.toedter.calendar.JDateChooser();
         jPanel14 = new javax.swing.JPanel();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        rbnNao = new javax.swing.JRadioButton();
+        cbbNivelVip = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
         jLabel33 = new javax.swing.JLabel();
-        jRadioButton1 = new javax.swing.JRadioButton();
+        rbnSim = new javax.swing.JRadioButton();
         lblVoltar = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
@@ -203,7 +203,6 @@ public class TelaGerencial extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Gerenciar Loja");
-        setResizable(false);
 
         Cadastro.setBackground(new java.awt.Color(255, 228, 181));
 
@@ -345,15 +344,20 @@ public class TelaGerencial extends javax.swing.JFrame {
         jPanel14.setBackground(new java.awt.Color(255, 228, 181));
         jPanel14.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "..:: Aplicar VIP ::..", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
 
-        jRadioButton2.setBackground(new java.awt.Color(255, 228, 181));
-        ClienteVip.add(jRadioButton2);
-        jRadioButton2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jRadioButton2.setText("Não");
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        rbnNao.setBackground(new java.awt.Color(255, 228, 181));
+        ClienteVip.add(rbnNao);
+        rbnNao.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        rbnNao.setText("Não");
+        rbnNao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                rbnNaoActionPerformed(evt);
+            }
+        });
+
+        cbbNivelVip.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5" }));
+        cbbNivelVip.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbbNivelVipActionPerformed(evt);
             }
         });
 
@@ -363,13 +367,13 @@ public class TelaGerencial extends javax.swing.JFrame {
         jLabel33.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel33.setText("Nível Vip:  *");
 
-        jRadioButton1.setBackground(new java.awt.Color(255, 228, 181));
-        ClienteVip.add(jRadioButton1);
-        jRadioButton1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jRadioButton1.setText("Sim");
-        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+        rbnSim.setBackground(new java.awt.Color(255, 228, 181));
+        ClienteVip.add(rbnSim);
+        rbnSim.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        rbnSim.setText("Sim");
+        rbnSim.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton1ActionPerformed(evt);
+                rbnSimActionPerformed(evt);
             }
         });
 
@@ -383,17 +387,17 @@ public class TelaGerencial extends javax.swing.JFrame {
                     .addGroup(jPanel14Layout.createSequentialGroup()
                         .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jRadioButton1)
+                        .addComponent(rbnSim)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jRadioButton2))
+                        .addComponent(rbnNao))
                     .addGroup(jPanel14Layout.createSequentialGroup()
                         .addComponent(jLabel33, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(cbbNivelVip, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 
-        jPanel14Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jRadioButton1, jRadioButton2});
+        jPanel14Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {rbnNao, rbnSim});
 
         jPanel14Layout.setVerticalGroup(
             jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -403,11 +407,11 @@ public class TelaGerencial extends javax.swing.JFrame {
                     .addGroup(jPanel14Layout.createSequentialGroup()
                         .addGap(31, 31, 31)
                         .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cbbNivelVip, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel33)))
                     .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jRadioButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jRadioButton1)
+                        .addComponent(rbnNao, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(rbnSim)
                         .addComponent(jLabel7)))
                 .addContainerGap())
         );
@@ -416,65 +420,68 @@ public class TelaGerencial extends javax.swing.JFrame {
         painelDadosPessoais.setLayout(painelDadosPessoaisLayout);
         painelDadosPessoaisLayout.setHorizontalGroup(
             painelDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(painelDadosPessoaisLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelDadosPessoaisLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(painelDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblNascimento)
-                    .addComponent(lblNome)
-                    .addComponent(lblEstado)
-                    .addComponent(lblRua)
-                    .addComponent(lblComplemento)
-                    .addComponent(lblTelefone)
-                    .addComponent(lblEmail))
-                .addGap(10, 10, 10)
-                .addGroup(painelDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(painelDadosPessoaisLayout.createSequentialGroup()
-                        .addComponent(txtNome)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(rbnMasculino)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(rbnFeminino))
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnCadastrarCli, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(painelDadosPessoaisLayout.createSequentialGroup()
-                        .addGroup(painelDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(cbbEstado, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(painelDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblNascimento)
+                            .addComponent(lblNome)
+                            .addComponent(lblEstado)
+                            .addComponent(lblRua)
+                            .addComponent(lblComplemento)
+                            .addComponent(lblTelefone)
+                            .addComponent(lblEmail))
+                        .addGap(10, 10, 10)
                         .addGroup(painelDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(painelDadosPessoaisLayout.createSequentialGroup()
+                                .addComponent(txtNome)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(rbnMasculino)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(rbnFeminino))
+                            .addGroup(painelDadosPessoaisLayout.createSequentialGroup()
+                                .addGroup(painelDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(cbbEstado, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txtNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(painelDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(painelDadosPessoaisLayout.createSequentialGroup()
+                                        .addGap(18, 18, 18)
+                                        .addComponent(lblCPF)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(txtCPF))
+                                    .addGroup(painelDadosPessoaisLayout.createSequentialGroup()
+                                        .addGap(25, 25, 25)
+                                        .addGroup(painelDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(lblUF)
+                                            .addComponent(lblNumero))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addGroup(painelDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(txtNumero)
+                                            .addComponent(cbbUF, 0, 465, Short.MAX_VALUE)))))
+                            .addComponent(txtComplemento)
+                            .addComponent(txtEmail)
+                            .addGroup(painelDadosPessoaisLayout.createSequentialGroup()
+                                .addComponent(txtRua, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(painelDadosPessoaisLayout.createSequentialGroup()
+                                .addComponent(txtTelefone)
+                                .addGap(18, 18, 18)
+                                .addComponent(lblCelular)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtCelular, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(painelDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(painelDadosPessoaisLayout.createSequentialGroup()
+                                .addGap(110, 110, 110)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(painelDadosPessoaisLayout.createSequentialGroup()
                                 .addGap(18, 18, 18)
-                                .addComponent(lblCPF)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtCPF))
-                            .addGroup(painelDadosPessoaisLayout.createSequentialGroup()
-                                .addGap(25, 25, 25)
-                                .addGroup(painelDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(lblUF)
-                                    .addComponent(lblNumero))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(painelDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtNumero)
-                                    .addComponent(cbbUF, 0, 465, Short.MAX_VALUE)))))
-                    .addComponent(txtComplemento)
-                    .addComponent(txtEmail)
-                    .addGroup(painelDadosPessoaisLayout.createSequentialGroup()
-                        .addComponent(txtRua, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(painelDadosPessoaisLayout.createSequentialGroup()
-                        .addComponent(txtTelefone)
-                        .addGap(18, 18, 18)
-                        .addComponent(lblCelular)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtCelular, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGroup(painelDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(painelDadosPessoaisLayout.createSequentialGroup()
-                        .addGap(110, 110, 110)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(painelDadosPessoaisLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(painelDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnCadastrarCli, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGap(16, 16, 16))
         );
         painelDadosPessoaisLayout.setVerticalGroup(
@@ -1097,7 +1104,7 @@ public class TelaGerencial extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "Nome", "Nascimento", "CPF", "Sexo", "Estado", "UF", "Logradouro", "Nº", "Complemento", "Telefone", "Celular", "E-mail"
+                "ID", "Nome", "Nascimento", "CPF", "Sexo", "Estado", "UF", "Logradouro", "Nº", "Complemento", "Telefone", "Celular", "E-mail", "Cliente Vip?", "Nível Vip"
             }
         ));
         jScrollPane2.setViewportView(tblCliente);
@@ -1232,7 +1239,7 @@ public class TelaGerencial extends javax.swing.JFrame {
                 .addComponent(btnExcluirCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(54, 54, 54)
                 .addComponent(btnAlterarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(62, Short.MAX_VALUE))
         );
 
         jPanel2Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnAlterarCliente, btnExcluirCliente});
@@ -1258,8 +1265,8 @@ public class TelaGerencial extends javax.swing.JFrame {
                 .addGap(22, 22, 22)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(16, 16, 16))
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         jPanel6Layout.setVerticalGroup(
@@ -1425,7 +1432,7 @@ public class TelaGerencial extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1279, Short.MAX_VALUE)
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1718,6 +1725,12 @@ public class TelaGerencial extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null,"Defina o sexo do cliente!");
             return;
         }
+        
+        if(!rbnSim.isSelected() && !rbnNao.isSelected()){
+            JOptionPane.showMessageDialog(null,"Valide se o cliente é Vip!");
+            return;
+        }
+        
         if(txtNascimento.getDate() == null){
             JOptionPane.showMessageDialog(this,"Preencha a data de nascimento!");
             txtNascimento.setBackground(Color.red);
@@ -1765,11 +1778,23 @@ public class TelaGerencial extends javax.swing.JFrame {
         //Vamos só passar esses dados dos txt para variáveis facilitando assim na hr de passar os parametros:
         Date nascimento = txtNascimento.getDate();
         String sexo = "";
+        String vip = "";
+        int nivelVip = 0;
         if(rbnMasculino.isSelected()){
             sexo = "M";
         }else{
             sexo = "F";
         }
+        
+        if(rbnSim.isSelected()){
+            vip = "Sim";
+            nivelVip = Integer.parseInt(cbbNivelVip.getSelectedItem().toString());
+        }else{
+            vip = "Não";
+            nivelVip = 0;
+        }
+        
+       
         
         String nome = txtNome.getText();
         String CPF = txtCPF.getText();
@@ -1811,7 +1836,7 @@ public class TelaGerencial extends javax.swing.JFrame {
             
             
             
-        if(ClienteController.Salvar(nome, nascimento, CPF, sexo, estado, UF, logradouro, numero,complemento, telefone, celular, email) == true){
+        if(ClienteController.Salvar(nome, nascimento, CPF, sexo, estado, UF, logradouro, numero,complemento, telefone, celular, email, vip, nivelVip) == true){
            JOptionPane.showMessageDialog(this,"Cliente cadastrado com sucesso!");
            abasGerenciamento.setSelectedIndex(1);
            listarClientes();
@@ -1824,7 +1849,7 @@ public class TelaGerencial extends javax.swing.JFrame {
             int linhaSelecionada = tblCliente.getSelectedRow();
             int idSelecionado = Integer.parseInt(tblCliente.getValueAt(linhaSelecionada, 0).toString());
             
-             if(ClienteController.atualizar(idSelecionado, nome, nascimento, CPF, sexo, estado, UF, logradouro, numero,complemento, telefone, celular, email)){
+             if(ClienteController.atualizar(idSelecionado, nome, nascimento, CPF, sexo, estado, UF, logradouro, numero,complemento, telefone, celular, email, vip, nivelVip)){
               JOptionPane.showMessageDialog(this, "Cliente atualizado com sucesso!");
               btnCadastrarCli.setText("Cadastrar");
               btnCadastrarCli.setBackground(new Color(51,153,255));
@@ -2114,13 +2139,26 @@ public class TelaGerencial extends javax.swing.JFrame {
           txtCelular.setText((tblCliente.getValueAt(linhaSelecionada, 11).toString()));
           txtEmail.setText((tblCliente.getValueAt(linhaSelecionada, 12).toString()));
           
+          
           String sexo = (tblCliente.getValueAt(linhaSelecionada, 4).toString());
+          String vip = (tblCliente.getValueAt(linhaSelecionada, 13).toString());
+          int Nivelvip = Integer.parseInt((tblCliente.getValueAt(linhaSelecionada, 14).toString()));
           
           if(sexo.equals("M")){
               rbnMasculino.setSelected(true);
           }else{
               rbnFeminino.setSelected(true);
-          } 
+          }
+          
+          if(vip.equals("Sim")){
+              rbnSim.setSelected(true);
+              cbbNivelVip.setSelectedItem((tblCliente.getValueAt(linhaSelecionada, 14).toString()));
+
+          }else{
+              rbnNao.setSelected(true);
+              cbbNivelVip.setEnabled(false);
+          }
+          
           btnCadastrarCli.setText("Alterar");
           btnCadastrarCli.setBackground(new Color(220,20,60));
           abasGerenciamento.setSelectedIndex(0);
@@ -2173,138 +2211,130 @@ public class TelaGerencial extends javax.swing.JFrame {
           JOptionPane.showMessageDialog(this,"A opção de alteração foi desbloqueada!");
           
           String nome = (tblProduto.getValueAt(linhaSelecionada, 1).toString());
-          if(nome.equals("Bateria")){
+          if(nome.equals("Hamburgão")){
               rbnHamburgao.setSelected(true);
             cbbSabor.removeAllItems();
             cbbSabor.addItem("Selecione");
-            cbbSabor.addItem("Perl");
-            cbbSabor.addItem("Yamaha");
-            cbbSabor.addItem("Drums DW");
-            cbbSabor.addItem("Sonor");
+            cbbSabor.addItem("Baccon");
+            cbbSabor.addItem("Cheddar");
             cbbTipo.removeAllItems();
-            cbbTipo.addItem("Instrumento de Percussão");
+            cbbTipo.addItem("Especial");
           }
-          if(nome.equals("Teclado")){
+          if(nome.equals("Sandwich")){
               rbnSandwich.setSelected(true);
             cbbSabor.removeAllItems();
             cbbSabor.addItem("Selecione");
-            cbbSabor.addItem("Yamaha");
-            cbbSabor.addItem("Korg");
-            cbbSabor.addItem("Fazioli");
+            cbbSabor.addItem("Steak de frango");
+            cbbSabor.addItem("Steak de churrasco");
             cbbTipo.removeAllItems();
-            cbbTipo.addItem("Instrumento de Teclas");
+            cbbTipo.addItem("Especial");
           }
-          if(nome.equals("Piano")){
+          if(nome.equals("Pastel")){
               rbnPastel.setSelected(true);
             cbbSabor.removeAllItems();
             cbbSabor.addItem("Selecione");
-            cbbSabor.addItem("Bosendorfer");
-            cbbSabor.addItem("Julius Blüthner");
-            cbbSabor.addItem("Fazioli");
+            cbbSabor.addItem("Frango");
+            cbbSabor.addItem("Carne");
+            cbbSabor.addItem("Queijo");
+            cbbSabor.addItem("Carne com queijo");
+            cbbSabor.addItem("Frango Catupiry");            
             cbbTipo.removeAllItems();
-            cbbTipo.addItem("Instrumento de Teclas");
+            cbbTipo.addItem("Especial");
           }
-          if(nome.equals("Violão")){
+          if(nome.equals("Refrigerante")){
             rbnRefrigerante.setSelected(true);
             cbbSabor.removeAllItems();
             cbbSabor.addItem("Selecione");
-            cbbSabor.addItem("Takamine");
-            cbbSabor.addItem("Tagima");
-            cbbSabor.addItem("Epiphone");
-            cbbSabor.addItem("Fender");
-            cbbSabor.addItem("Crafter");
-            cbbSabor.addItem("Gibson");
-            cbbSabor.addItem("Taylor");
+            cbbSabor.addItem("Fanta laranja");
+            cbbSabor.addItem("Fanta Uva");
+            cbbSabor.addItem("Coca-cola");
+            cbbSabor.addItem("Pepsi");
+            cbbSabor.addItem("Guaraná");
             cbbTipo.removeAllItems();
-            cbbTipo.addItem("Instrumento de Cordas");
+            cbbTipo.addItem("Bebida");
               
           }
-          if(nome.equals("Guitarra")){
-              rbnSuco.setSelected(true);
+          if(nome.equals("Suco")){
+            rbnSuco.setSelected(true);
             cbbSabor.removeAllItems();
             cbbSabor.addItem("Selecione");
-            cbbSabor.addItem("Yamaha");
-            cbbSabor.addItem("Squire");
-            cbbSabor.addItem("Epiphone");
-            cbbSabor.addItem("Fender");
-            cbbSabor.addItem("Ibanez");
-            cbbSabor.addItem("Gibson Les Paul");
+            cbbSabor.addItem("Uva");
+            cbbSabor.addItem("Morango");
+            cbbSabor.addItem("Laranja");
+            cbbSabor.addItem("Maracujá");
             cbbTipo.removeAllItems();
-            cbbTipo.addItem("Instrumento de Cordas");
+            cbbTipo.addItem("Bebida");
               
           }
-          if(nome.equals("Contrabaixo")){
-              rbnAgua.setSelected(true);
+          if(nome.equals("Agua")){
+            rbnAgua.setSelected(true);
             cbbSabor.removeAllItems();
             cbbSabor.addItem("Selecione");
-            cbbSabor.addItem("Tagima");
-            cbbSabor.addItem("Epiphone");
-            cbbSabor.addItem("Fender");
-            cbbSabor.addItem("Yamaha");
+            cbbSabor.addItem("Com gás");
+            cbbSabor.addItem("Natural");
             cbbTipo.removeAllItems();
-            cbbTipo.addItem("Instrumento de Cordas");       
+            cbbTipo.addItem("Bebida");     
           }
-          if(nome.equals("Violino")){
+          if(nome.equals("Cerveja")){
             rbnCerveja.setSelected(true);
             cbbSabor.removeAllItems();
             cbbSabor.addItem("Selecione");
-            cbbSabor.addItem("Stradivarius");
-            cbbSabor.addItem("Eagle");
-            cbbSabor.addItem("Hofma");
-            cbbSabor.addItem("Michael");
+            cbbSabor.addItem("Brahma");
+            cbbSabor.addItem("Skol");
+            cbbSabor.addItem("Stella");
+            cbbSabor.addItem("Eisenbahn");
+            cbbSabor.addItem("Heineken");
             cbbTipo.removeAllItems();
-            cbbTipo.addItem("Instrumento de Cordas");
+            cbbTipo.addItem("Bebida");
           }
-          if(nome.equals("Ukulele")){
+          if(nome.equals("SucoNatural")){
             rbnSucoNatural.setSelected(true);
             cbbSabor.removeAllItems();
             cbbSabor.addItem("Selecione");
-            cbbSabor.addItem("Kala");
-            cbbSabor.addItem("Akahai");
-            cbbSabor.addItem("Shelby");
-            cbbSabor.addItem("Kalani");
+            cbbSabor.addItem("Morango");
+            cbbSabor.addItem("Maracujá");
+            cbbSabor.addItem("Laranja");
             cbbTipo.removeAllItems();
-            cbbTipo.addItem("Instrumento de Cordas");
+            cbbTipo.addItem("Bebida");
           }
-          if(nome.equals("Headphone")){
+          if(nome.equals("Hamburger")){
             rbnHamburger.setSelected(true);
             cbbSabor.removeAllItems();
             cbbSabor.addItem("Selecione");
-            cbbSabor.addItem("JBL");
-            cbbSabor.addItem("Sony");
-            cbbSabor.addItem("Hyperx");
+            cbbSabor.addItem("Baccon");
+            cbbSabor.addItem("Cheddar");
             cbbTipo.removeAllItems();
-            cbbTipo.addItem("Periférico de Áudio");
+            cbbTipo.addItem("Lanches Gerais");
               
           }
-          if(nome.equals("Caixa de som")){
+          if(nome.equals("Bauru")){
             rbnBauru.setSelected(true);
             cbbSabor.removeAllItems();
             cbbSabor.addItem("Selecione");
-            cbbSabor.addItem("JBL");
-            cbbSabor.addItem("Sony");
+            cbbSabor.addItem("Presunto e queijo");
+            cbbSabor.addItem("Frango");
             cbbTipo.removeAllItems();
-            cbbTipo.addItem("Periférico de Áudio");
+            cbbTipo.addItem("Lanches Gerais");
           }
-          if(nome.equals("Alto Falantes")){
+          if(nome.equals("Coxinha")){
             rbnCoxinha.setSelected(true);
             cbbSabor.removeAllItems();
             cbbSabor.addItem("Selecione");
-            cbbSabor.addItem("JBL");
-            cbbSabor.addItem("Pionner");
-            cbbSabor.addItem("Audiophonic");
+            cbbSabor.addItem("Frango cremily");
+            cbbSabor.addItem("Carne");
+            cbbSabor.addItem("Calabresa");
             cbbTipo.removeAllItems();
-            cbbTipo.addItem("Periférico de Áudio");
+            cbbTipo.addItem("Lanches Gerais");
           }
-          if(nome.equals("Microfone")){
+          if(nome.equals("Esfiha")){
             rbnEsfiha.setSelected(true);
             cbbSabor.removeAllItems();
             cbbSabor.addItem("Selecione");
-            cbbSabor.addItem("AKG");
-            cbbSabor.addItem("Shure SM57");
-            cbbSabor.addItem("Hyperx");
+            cbbSabor.addItem("Frango cremily");
+            cbbSabor.addItem("Carne");
+            cbbSabor.addItem("Calabresa");
             cbbTipo.removeAllItems();
-            cbbTipo.addItem("Periférico de Áudio");
+            cbbTipo.addItem("Lanches Gerais");
           }
           if(nome.equals("Cabo P2")){
             rbnBolo.setSelected(true);
@@ -2536,13 +2566,17 @@ public class TelaGerencial extends javax.swing.JFrame {
         txtQtd.setText(Integer.toString(qtdAtual));
     }//GEN-LAST:event_btnMenosMousePressed
 
-    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton1ActionPerformed
+    private void rbnSimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbnSimActionPerformed
+        cbbNivelVip.setEnabled(true);
+    }//GEN-LAST:event_rbnSimActionPerformed
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+    private void cbbNivelVipActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbbNivelVipActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    }//GEN-LAST:event_cbbNivelVipActionPerformed
+
+    private void rbnNaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbnNaoActionPerformed
+        cbbNivelVip.setEnabled(false);
+    }//GEN-LAST:event_rbnNaoActionPerformed
         public void listarClientes(){
         
         ArrayList<String []> listaClientes = ClienteController.listar();
@@ -2688,13 +2722,13 @@ public class TelaGerencial extends javax.swing.JFrame {
     private javax.swing.JButton btnPesquisaTipo;
     private javax.swing.JButton btnPesquisaVenda;
     private javax.swing.JComboBox<String> cbbEstado;
+    private javax.swing.JComboBox<String> cbbNivelVip;
     private javax.swing.JComboBox<String> cbbSabor;
     private javax.swing.JComboBox<String> cbbTipo;
     private javax.swing.JComboBox<String> cbbUF;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton4;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -2745,8 +2779,6 @@ public class TelaGerencial extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -2775,9 +2807,11 @@ public class TelaGerencial extends javax.swing.JFrame {
     private javax.swing.JRadioButton rbnHamburgao;
     private javax.swing.JRadioButton rbnHamburger;
     private javax.swing.JRadioButton rbnMasculino;
+    private javax.swing.JRadioButton rbnNao;
     private javax.swing.JRadioButton rbnPastel;
     private javax.swing.JRadioButton rbnRefrigerante;
     private javax.swing.JRadioButton rbnSandwich;
+    private javax.swing.JRadioButton rbnSim;
     private javax.swing.JRadioButton rbnSuco;
     private javax.swing.JRadioButton rbnSucoNatural;
     private javax.swing.JTable tblCliente;

@@ -6,19 +6,13 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 
-
-/**
- * @author Grupo 2 - Projeto Integrador
- * @since 01/11/2020
- */
-
 public class GerenciadorConexao {
     
     public static String STATUS = "Não conectado";
     public static String DRIVER = "com.mysql.cj.jdbc.Driver"; 
     
     public static String SERVER = "localhost";
-    public static String DATABASE = "DBlojamusica";
+    public static String DATABASE = "DBLanches";
     
     public static String LOGIN = "root";                   
     public static String SENHA = "";                         

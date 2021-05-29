@@ -2,10 +2,7 @@
 package Model;
 
 import java.util.Date;
-/**
- * @author Grupo 2 - Projeto Integrador
- * @since 01/11/2020
- */
+
 public class Cliente {
     
     private int idCliente;

@@ -1,10 +1,6 @@
 
 package Model;
 
- /**
- * @author Grupo 2 - Projeto Integrador
- * @since 01/11/2020
- */  
 public class ItemVenda {
     private  int idItem;
     private int FkIdVenda;
