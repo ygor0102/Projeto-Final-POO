@@ -11,6 +11,6 @@ package Model;
  */
 public interface ApplicableDiscount {
     
-    public abstract double calcularDesconto();
+    public abstract double calcularDesconto(double precoTotal, double desconto);
     
 }

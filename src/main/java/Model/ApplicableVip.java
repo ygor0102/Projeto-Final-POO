@@ -11,6 +11,6 @@ package Model;
  */
 public interface ApplicableVip {
     
-    public abstract double getDescontoFixo();
+    public abstract double getDescontoFixo(int nivelVip);
     
 }

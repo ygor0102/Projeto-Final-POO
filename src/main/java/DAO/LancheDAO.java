@@ -2,6 +2,7 @@
 package DAO;
 
 import Model.Lanche;
+import Model.LancheEspecial;
 import Utils.GerenciadorConexao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -15,7 +16,7 @@ import java.util.ArrayList;
 public class LancheDAO {
     
   
-    public static boolean Salvar(Lanche obj){
+    public static boolean Salvar(LancheEspecial obj){
        
         boolean retorno = false;
         Connection conexao = null;
@@ -24,7 +25,7 @@ public class LancheDAO {
         try {
               conexao = GerenciadorConexao.abrirConexao();
 
-              instrucaoSQL = conexao.prepareStatement("INSERT INTO produto (nome, modelo, tipo, preco, qtd_estoque) VALUES (?,?,?,?,?)"
+              instrucaoSQL = conexao.prepareStatement("INSERT INTO lanche (nome, sabor, tipo, preco, qtd_estoque, acompanhamento_adicional) VALUES (?,?,?,?,?,?)"
                       , Statement.RETURN_GENERATED_KEYS);  //Caso queira retornar o ID
             
             //Adiciono os parâmetros ao meu comando SQL
@@ -33,6 +34,7 @@ public class LancheDAO {
             instrucaoSQL.setString(3, obj.getTipo());
             instrucaoSQL.setDouble(4, obj.getPrecoProduto());
             instrucaoSQL.setInt(5, obj.getQtdEstoque());
+            instrucaoSQL.setString(6, obj.getAcompanhamentoAdicional());
             
             int linhasAfetadas = instrucaoSQL.executeUpdate();
             
@@ -40,11 +42,11 @@ public class LancheDAO {
                 
                 retorno = true;
                 
-                ResultSet generatedKeys = instrucaoSQL.getGeneratedKeys(); //Recupero o ID do produto
+                ResultSet generatedKeys = instrucaoSQL.getGeneratedKeys(); //Recupero o ID do lanche
                 if (generatedKeys.next()) {
                         obj.setIdLanche(generatedKeys.getInt(1));
                 }else {
-                        throw new SQLException("Falha ao obter o ID do produto!");
+                        throw new SQLException("Falha ao obter o ID do lanche!");
                 }
             }else{
                 retorno = false;
@@ -72,37 +74,38 @@ public class LancheDAO {
     }
     
 
-    public static ArrayList<Lanche> listar() {
+    public static ArrayList<LancheEspecial> listar() {
         
         boolean retorno = false;
         Connection conexao = null;
         PreparedStatement instrucaoSQL = null;
-        ArrayList<Lanche> listaProdutos = new ArrayList<>();
+        ArrayList<LancheEspecial> listaLanches = new ArrayList<>();
         ResultSet rs = null;
                 
         try {
             
             conexao = GerenciadorConexao.abrirConexao();
-            instrucaoSQL = conexao.prepareStatement("SELECT * FROM produto;");
+            instrucaoSQL = conexao.prepareStatement("SELECT * FROM lanche;");
             
             rs = instrucaoSQL.executeQuery();
             
             while(rs.next())
             {
-                Lanche obj = new Lanche();
-                obj.setIdLanche(rs.getInt("id_produto"));
+                LancheEspecial obj = new LancheEspecial();
+                obj.setIdLanche(rs.getInt("id_lanche"));
                 obj.setNome(rs.getString("nome"));
-                obj.setSabor(rs.getString("modelo"));
+                obj.setSabor(rs.getString("sabor"));
                 obj.setTipo(rs.getString("tipo"));
                 obj.setPrecoProduto(rs.getDouble("preco"));
                 obj.setQtdEstoque(rs.getInt("qtd_estoque"));
+                obj.setAcompanhamentoAdicional(rs.getString("acompanhamento_adicional"));
                 
-                listaProdutos.add(obj);
+                listaLanches.add(obj);
             }
             
         }catch (SQLException | ClassNotFoundException ex ) {
             System.out.println(ex.getMessage());
-            listaProdutos = null;
+            listaLanches = null;
         }finally{
             
             //Libero os recursos da memória
@@ -118,22 +121,22 @@ public class LancheDAO {
              }
         }
         
-        return listaProdutos;
+        return listaLanches;
 
     }
 
-    public static ArrayList<Lanche> listarPorNome(String pNome) {
+    public static ArrayList<LancheEspecial> listarPorNome(String pNome) {
         
         boolean retorno = false;
         Connection conexao = null;
         PreparedStatement instrucaoSQL = null;
-        ArrayList<Lanche> listaProdutos = new ArrayList<>();
+        ArrayList<LancheEspecial> listaLanches = new ArrayList<>();
         ResultSet rs = null;
                 
         try {
             
             conexao = GerenciadorConexao.abrirConexao();
-            instrucaoSQL = conexao.prepareStatement("SELECT * FROM produto WHERE nome like ?;");
+            instrucaoSQL = conexao.prepareStatement("SELECT * FROM lanche WHERE nome like ?;");
             instrucaoSQL.setString(1, "%" + pNome + "%");
             
             
@@ -141,18 +144,19 @@ public class LancheDAO {
             
             while(rs.next())
             {
-                Lanche obj = new Lanche();
-                obj.setIdLanche(rs.getInt("id_produto"));
+                LancheEspecial obj = new LancheEspecial();
+                obj.setIdLanche(rs.getInt("id_lanche"));
                 obj.setNome(rs.getString("nome"));
-                obj.setSabor(rs.getString("modelo"));
+                obj.setSabor(rs.getString("sabor"));
                 obj.setTipo(rs.getString("tipo"));
                 obj.setPrecoProduto(rs.getDouble("preco"));
                 obj.setQtdEstoque(rs.getInt("qtd_estoque"));
+                obj.setAcompanhamentoAdicional(rs.getString("acompanhamento_adicional"));
                 
-                listaProdutos.add(obj);
+                listaLanches.add(obj);
             }}catch (SQLException | ClassNotFoundException ex ) {
             System.out.println(ex.getMessage());
-            listaProdutos = null;
+            listaLanches = null;
         }finally{
             
             //Libero os recursos da memória
@@ -168,22 +172,22 @@ public class LancheDAO {
              }
         }
         
-        return listaProdutos;
+        return listaLanches;
 
     }
     
-    public static ArrayList<Lanche> listarPorTipo(String pTipo) {
+    public static ArrayList<LancheEspecial> listarPorTipo(String pTipo) {
         
         boolean retorno = false;
         Connection conexao = null;
         PreparedStatement instrucaoSQL = null;
-        ArrayList<Lanche> listaProdutos = new ArrayList<>();
+        ArrayList<LancheEspecial> listaLanches = new ArrayList<>();
         ResultSet rs = null;
                 
         try {
             
             conexao = GerenciadorConexao.abrirConexao();
-            instrucaoSQL = conexao.prepareStatement("SELECT * FROM produto WHERE tipo like ?;");
+            instrucaoSQL = conexao.prepareStatement("SELECT * FROM lanche WHERE tipo like ?;");
             instrucaoSQL.setString(1, "%" + pTipo + "%");
             
             
@@ -191,18 +195,19 @@ public class LancheDAO {
             
             while(rs.next())
             {
-                Lanche obj = new Lanche();
-                obj.setIdLanche(rs.getInt("id_produto"));
+                LancheEspecial obj = new LancheEspecial();
+                obj.setIdLanche(rs.getInt("id_lanche"));
                 obj.setNome(rs.getString("nome"));
-                obj.setSabor(rs.getString("modelo"));
+                obj.setSabor(rs.getString("sabor"));
                 obj.setTipo(rs.getString("tipo"));
                 obj.setPrecoProduto(rs.getDouble("preco"));
                 obj.setQtdEstoque(rs.getInt("qtd_estoque"));
+                obj.setAcompanhamentoAdicional(rs.getString("acompanhamento_adicional"));
                 
-                listaProdutos.add(obj);
+                listaLanches.add(obj);
             }}catch (SQLException | ClassNotFoundException ex ) {
             System.out.println(ex.getMessage());
-            listaProdutos = null;
+            listaLanches = null;
         }finally{
             
             //Libero os recursos da memória
@@ -218,7 +223,7 @@ public class LancheDAO {
              }
         }
         
-        return listaProdutos;
+        return listaLanches;
 
     }
     
@@ -231,7 +236,7 @@ public class LancheDAO {
         try {
             
             conexao = GerenciadorConexao.abrirConexao();
-            instrucaoSQL = conexao.prepareStatement("DELETE FROM produto WHERE id_produto = ?");
+            instrucaoSQL = conexao.prepareStatement("DELETE FROM lanche WHERE id_lanche = ?");
             //Adiciono os parâmetros ao meu comando SQL
             instrucaoSQL.setInt(1, pIdProduto);
             
@@ -266,7 +271,7 @@ public class LancheDAO {
     
     }
  
-    public static boolean atualizar(Lanche obj) {
+    public static boolean atualizar(LancheEspecial obj) {
         
         boolean retorno = false;
         Connection conexao = null;
@@ -275,7 +280,7 @@ public class LancheDAO {
         try {
             
             conexao = GerenciadorConexao.abrirConexao();
-            instrucaoSQL = conexao.prepareStatement("UPDATE produto set nome = ?, modelo = ?, tipo = ?, preco = ?, qtd_estoque= ? WHERE id_produto = ?");
+            instrucaoSQL = conexao.prepareStatement("UPDATE lanche set nome = ?, sabor = ?, tipo = ?, preco = ?, qtd_estoque= ?, acompanhamento_adicional = ? WHERE id_lanche = ?");
             
             //Adiciono os parâmetros ao meu comando SQL
             instrucaoSQL.setString(1, obj.getNome());
@@ -283,7 +288,9 @@ public class LancheDAO {
             instrucaoSQL.setString(3, obj.getTipo());
             instrucaoSQL.setDouble(4, obj.getPrecoProduto());
             instrucaoSQL.setInt(5, obj.getQtdEstoque());
-            instrucaoSQL.setInt(6, obj.getIdLanche());
+            instrucaoSQL.setString(6, obj.getAcompanhamentoAdicional());
+            instrucaoSQL.setInt(7, obj.getIdLanche());
+
 
             
             int linhasAfetadas = instrucaoSQL.executeUpdate();

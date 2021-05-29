@@ -10,6 +10,9 @@ public class LancheEspecial extends Lanche{
         this.acompanhamentoAdicional = acompanhamentoAdicional;
         
     }
+    public LancheEspecial(){
+    
+    }
 
   
     public String getAcompanhamentoAdicional() {

@@ -114,8 +114,8 @@ public class Venda implements ApplicableDiscount{
     
 
     @Override
-    public double calcularDesconto() {
-            return getPrecoTotal()-getDesconto();
+    public double calcularDesconto(double precoTotal, double desconto) {
+            return precoTotal - (desconto*precoTotal);
     }
  
 

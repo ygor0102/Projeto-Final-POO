@@ -3,6 +3,7 @@ package DAO;
 
 import Model.Cliente;
 import Model.Venda;
+import Model.VendaVip;
 import Utils.GerenciadorConexao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -22,12 +23,7 @@ public class VendaDAO {
 
     public static int idVenda;
 
-    /**
-     * Método para salvar as vendas realizadas no banco.
-     * @param obj Venda - Objeto da classe Venda
-     * @return <code>boolean</code> - true: Conseguiu salvar a venda, false: Falha ao salvar, verifique a classe "GerenciadorConexão".
-     */
-    public static boolean Salvar(Venda obj){
+    public static boolean Salvar(VendaVip obj){
         boolean retorno = false;
         Connection conexao = null;
         PreparedStatement instrucaoSQL = null;
@@ -36,13 +32,15 @@ public class VendaDAO {
         try {
               conexao = GerenciadorConexao.abrirConexao();
 
-              instrucaoSQL = conexao.prepareStatement("INSERT INTO venda (data_venda, preco_total, fk_id_cliente) VALUES (?,?,?)"
+              instrucaoSQL = conexao.prepareStatement("INSERT INTO venda (data_venda, preco_total, desconto, brinde_adicional, fk_id_cliente) VALUES (?,?,?,?,?)"
                       , Statement.RETURN_GENERATED_KEYS);  //Caso queira retornar o ID
             
             //Adiciono os parâmetros ao meu comando SQL
             instrucaoSQL.setDate(1, new java.sql.Date(obj.getDataVenda().getTime()));
             instrucaoSQL.setDouble(2, obj.getPrecoTotal());
-            instrucaoSQL.setInt(3, obj.getFkIdCliente());
+            instrucaoSQL.setDouble(3, obj.getDesconto());
+            instrucaoSQL.setString(4, obj.getBrindeAdicional());
+            instrucaoSQL.setInt(5, obj.getFkIdCliente());
             
             int linhasAfetadas = instrucaoSQL.executeUpdate();
             
@@ -83,18 +81,12 @@ public class VendaDAO {
         return retorno;
     }
     
-    /**
-     * Método para listar as vendas a partir de um período (relatório sintético).
-     * @param pDataInicial Date - Data inicial do período desejado.
-     * @param pDataFinal Date - Data final do período desejado.
-     * @return <code>boolean</code> - true: Conseguiu listar as vendas, false: Falha ao listar, verifique a classe "GerenciadorConexao".
-     */
-    public static ArrayList<Venda> listar(Date pDataInicial, Date pDataFinal) {
+    public static ArrayList<VendaVip> listar(Date pDataInicial, Date pDataFinal) {
         
         boolean retorno = false;
         Connection conexao = null;
         PreparedStatement instrucaoSQL = null;
-        ArrayList<Venda> listaVendas = new ArrayList<>();
+        ArrayList<VendaVip> listaVendas = new ArrayList<>();
         ResultSet rs = null;
                 
         try {
@@ -109,10 +101,12 @@ public class VendaDAO {
             
             while(rs.next())
             {
-                Venda obj = new Venda();
+                VendaVip obj = new VendaVip();
                 obj.setIdVenda(rs.getInt("id_venda"));
                 obj.setDataVenda(rs.getDate("data_venda"));
                 obj.setPrecoTotal(rs.getDouble("preco_total"));
+                obj.setDesconto(rs.getDouble("desconto"));
+                obj.setBrindeAdicional(rs.getString("brinde_adicional"));
                
                 
                 listaVendas.add(obj);
@@ -147,7 +141,7 @@ public class VendaDAO {
         
         Connection conexao = null;
         PreparedStatement instrucaoSQL = null;
-        Venda retorno = new Venda();
+        VendaVip retorno = new VendaVip();
         ResultSet rs = null;
                 
         try {
@@ -160,7 +154,7 @@ public class VendaDAO {
             
             while(rs.next())
             {
-                Venda obj = new Venda();
+                VendaVip obj = new VendaVip();
                 obj.setIdVenda(rs.getInt("id_venda"));
                 obj.setFkIdCliente(rs.getInt("fk_id_cliente"));
                 obj.setNome(rs.getString("nome"));

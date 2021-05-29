@@ -5,6 +5,7 @@ import DAO.ClienteDAO;
 import DAO.VendaDAO;
 import Model.Cliente;
 import Model.Venda;
+import Model.VendaVip;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -16,20 +17,15 @@ import java.util.Date;
 
 public class VendaController {
     
-    /**
-     * Método para salvar a venda.
-     * @param pDataVenda Date - Data de venda (hoje)
-     * @param pPrecoTotal Double - Valor total dos produtos
-     * @param pFkIdCliente int - chave estrangeira do cliente resposável pela compra
-     * @return <code>boolean</code> - true: Conseguiu salvar a venda, false: Falha ao salvar, verifique o pacote DAO.
-     */
-    public static boolean Salvar(Date pDataVenda, double pPrecoTotal, int pFkIdCliente){
+    public static boolean Salvar(Date pDataVenda, double pPrecoTotal, double pDescontoVenda, String pBrindeVip, int pFkIdCliente){
      
     boolean retorno = false;
-    Venda objVenda = new Venda();
+    VendaVip objVenda = new VendaVip();
     
     objVenda.setDataVenda(pDataVenda);
     objVenda.setPrecoTotal(pPrecoTotal);
+    objVenda.setDesconto(pDescontoVenda);
+    objVenda.setBrindeAdicional(pBrindeVip);
     objVenda.setFkIdCliente(pFkIdCliente);
     
         try {
@@ -42,21 +38,18 @@ public class VendaController {
             return retorno;
         
     }
-    /**
-     * Método para listar as vendas do sistema.
-     * @param pDataInicial Date - Data inicial do período desejado
-     * @param pDataFinal Double - Data final do período desejado
-     * @return <code>String[]</code> - Lista gerada.
-     */
+  
     public static ArrayList<String[]> listar(Date pDataInicial, Date pDataFinal) {
     
-        ArrayList<Venda> listaVendas = VendaDAO.listar(pDataInicial, pDataFinal);
+        ArrayList<VendaVip> listaVendas = VendaDAO.listar(pDataInicial, pDataFinal);
         ArrayList<String[]> listaRetorno = new ArrayList<>();
         
-        for (Venda obj : listaVendas) {
+        for (VendaVip obj : listaVendas) {
             listaRetorno.add(new String[]{String.valueOf(obj.getIdVenda())
                                         ,String.valueOf(obj.getDataVenda())
                                         ,String.valueOf(obj.getPrecoTotal())
+                                        ,String.valueOf(obj.getDesconto())
+                                        ,String.valueOf(obj.getBrindeAdicional())
                                         
                 });
         }

@@ -39,8 +39,10 @@ public class ClienteVip extends Cliente implements ApplicableVip {
     
     //Vip 01 = 5% de desconto. Cada vip incrementa +5%;
     @Override
-    public double getDescontoFixo() {
-        return getNivelVip()*0.05; 
+    public double getDescontoFixo(int nivelVip) {
+        return nivelVip*0.05;
     }
+    
+    
     
 }

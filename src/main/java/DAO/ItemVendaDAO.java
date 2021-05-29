@@ -11,18 +11,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-/**
- * @author Grupo 2 - Projeto Integrador
- * @since 01/11/2020
- */
 
 public class ItemVendaDAO {
-    
-    /**
-     * Método para salvar os itens comprados na venda. Um insert por item.
-     * @param obj ItemVenda - Objeto da classe ItemVenda
-     * @return <code>boolean</code> - true: Conseguiu salvar os itens, false: Falha ao salvar, verifique a classe "GerenciadorConexão".
-     */
+
    public static boolean Salvar(ItemVenda obj){
        
         boolean retorno = false;
@@ -32,12 +23,12 @@ public class ItemVendaDAO {
         try {
               conexao = GerenciadorConexao.abrirConexao();
 
-              instrucaoSQL = conexao.prepareStatement("INSERT INTO item_venda (fk_id_venda, fk_id_produto) VALUES (?,?)"
+              instrucaoSQL = conexao.prepareStatement("INSERT INTO item_venda (FK_id_venda, FK_id_lanche) VALUES (?,?)"
                       , Statement.RETURN_GENERATED_KEYS);  //Caso queira retornar o ID
             
             //Adiciono os parâmetros ao meu comando SQL
             instrucaoSQL.setInt(1, obj.getFkIdVenda());
-            instrucaoSQL.setInt(2, obj.getFkIdProduto());
+            instrucaoSQL.setInt(2, obj.getFkIdLanche());
             
             int linhasAfetadas = instrucaoSQL.executeUpdate();
             
@@ -77,11 +68,6 @@ public class ItemVendaDAO {
         return retorno;
     }
    
-   /**
-     * Método para listar os itens de venda do banco.
-     * @param pIdVenda int  - Variável do tipo int. Use o id da venda para fazer a busca.
-     * @return <code>boolean</code> - true: Conseguiu listar os itens, false: Falha ao listar, verifique a classe "GerenciadorConexao".
-     */
    public static ArrayList<ItemVenda> listarItens(int pIdVenda) {
         
         boolean retorno = false;
@@ -92,7 +78,7 @@ public class ItemVendaDAO {
             
             try {   
             conexao = GerenciadorConexao.abrirConexao();            
-            instrucaoSQL = conexao.prepareStatement("SELECT * FROM item_venda INNER JOIN produto ON item_venda.FK_id_produto = produto.id_produto WHERE FK_id_venda = ?;"); 
+            instrucaoSQL = conexao.prepareStatement("SELECT * FROM item_venda INNER JOIN lanche ON item_venda.FK_id_lanche = lanche.id_lanche WHERE FK_id_venda = ?;"); 
             instrucaoSQL.setInt(1, pIdVenda);
             
             rs = instrucaoSQL.executeQuery();
@@ -102,7 +88,7 @@ public class ItemVendaDAO {
                 ItemVenda obj = new ItemVenda();
                 obj.setIdItem(rs.getInt("id_item"));
                 obj.setNome(rs.getString("nome"));
-                obj.setModelo(rs.getString("modelo"));
+                obj.setSabor(rs.getString("sabor"));
                 obj.setTipo(rs.getString("tipo"));
                 obj.setPrecoUnitario(rs.getDouble("preco"));
                 
