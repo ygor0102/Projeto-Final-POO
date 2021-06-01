@@ -1,14 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * @author Ygor Oliveira - Yasmim Candelária - Juan Gonçalves Dias - Filipe Vital da Silva
+ * @since 17/05/2021
  */
 package Model;
 
-/**
- *
- * @author ygor.oliveira
- */
 public interface ApplicableVip {
     
     public abstract double getDescontoFixo(int nivelVip);

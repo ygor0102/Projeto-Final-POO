@@ -1,12 +1,12 @@
+/**
+ * @author Ygor Oliveira - Yasmim Candelária - Juan Gonçalves Dias - Filipe Vital da Silva
+ * @since 17/05/2021
+ */
+
 package View;
-
-
 import java.awt.Color;
 
-/**
- * @author Grupo 2 - Projeto Integrador
- * @since 15/09/2020
- */
+
 
 public class TelaInicial extends javax.swing.JFrame {
 

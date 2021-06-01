@@ -1,7 +1,10 @@
+/**
+ * @author Ygor Oliveira - Yasmim Candelária - Juan Gonçalves Dias - Filipe Vital da Silva
+ * @since 17/05/2021
+ */
 
 package Controller;
 import DAO.LancheDAO;
-import Model.Lanche;
 import Model.LancheEspecial;
 import java.util.ArrayList;
 
@@ -14,7 +17,6 @@ public class LancheController {
     boolean retorno = false;
     LancheEspecial objLanche = new LancheEspecial();
     
-    //Recebi os parâmetros da View e criei um objeto da classe Lanche especial;
     objLanche.setNome(pNome);
     objLanche.setSabor(pModelo);
     objLanche.setTipo(pTipo);

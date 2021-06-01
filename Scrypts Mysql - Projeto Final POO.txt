@@ -1,0 +1,60 @@
+create database DBLanches;
+use DBLanches;
+
+create table cliente (
+id_cliente int not null auto_increment,
+nome varchar(40) not null,
+nascimento date not null,
+CPF varchar(14) not null,
+sexo varchar(1) not null,
+estado varchar (20) not null,
+UF varchar (2) not null,
+logradouro varchar (50) not null,
+numero_residencia int not null,
+complemento varchar(30) null,
+telefone varchar(13) null,
+celular varchar(14) null,
+email varchar(40) not null,
+vip varchar(10) not null,
+nivel_vip int not null,
+primary key (id_cliente)
+);
+
+create table lanche (
+id_lanche int not null auto_increment,
+nome varchar (30) not null,
+sabor varchar (30) not null,
+tipo varchar (45) not null,
+preco decimal (10,2) not null,
+qtd_estoque integer not null,
+acompanhamento_adicional varchar(40),
+primary key (id_lanche));
+
+create table venda (
+id_venda int not null auto_increment,
+data_venda date not null,
+preco_total decimal (10,2) not null,
+desconto decimal (10,2),
+brinde_adicional varchar (40),
+fk_id_cliente int not null,
+primary key (id_venda),
+foreign key (fk_id_cliente) references cliente (id_cliente));
+
+create table item_venda (
+id_item int not null auto_increment,
+FK_id_venda int not null,
+FK_id_lanche int not null,
+primary key (id_item),
+foreign key (FK_id_venda) references venda (id_venda),
+foreign key (FK_id_lanche) references lanche (id_lanche));
+
+delimiter $$
+create trigger controle_estoque after insert on item_venda for each row
+begin
+update lanche set qtd_estoque = qtd_estoque - 1  where id_lanche = new.FK_id_lanche;
+end $$
+
+select * from cliente;
+select * from lanche
+select * from venda;
+select * from item_venda;

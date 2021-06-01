@@ -1,3 +1,7 @@
+/**
+ * @author Ygor Oliveira - Yasmim Candelária - Juan Gonçalves Dias - Filipe Vital da Silva
+ * @since 17/05/2021
+ */
 
 package DAO;
 
@@ -5,24 +9,17 @@ import Model.Cliente;
 import Model.ClienteVip;
 import Utils.GerenciadorConexao;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-/**
- * @author Grupo 2 - Projeto Integrador
- * @since 01/11/2020
- */
+
 
 public class ClienteDAO {
-    /**
-     * Método para salvar o cadastro do cliente no banco.
-     * @param obj Cliente - Objeto da classe cliente
-     * @return <code>boolean</code> - true: Conseguiu salvar o cliente, false: Falha ao salvar, verifique a classe "GerenciadorConexao".
-     */
+    
+    
     public static boolean Salvar(ClienteVip obj){
        
         boolean retorno = false;
@@ -87,10 +84,7 @@ public class ClienteDAO {
         
         return retorno;
     } 
-    /**
-     * Método para listar os clientes do banco.
-     * @return <code>boolean</code> - true: Conseguiu listar os clientes, false: Falha ao listar, verifique a classe "GerenciadorConexao".
-     */
+  
      public static ArrayList<ClienteVip> listar() {
         
         boolean retorno = false;
@@ -149,11 +143,6 @@ public class ClienteDAO {
         return listaClientes;
 
     }
-      /**
-     * Método para listar os clientes do banco a partir do CPF.
-     * @param pCPF - String CPF do cliente
-     * @return <code>obj</code> retorno - Retorna um objeto com os dados do select.
-     */
      public static Cliente consultarPorCPF(String pCPF) {
         
         Connection conexao = null;
@@ -212,11 +201,6 @@ public class ClienteDAO {
         return retorno;
 
     }
-     /**
-     * Método para listar os clientes do banco a partir do nome.
-     * @param pNome String nome do cliente
-     * @return <code>Arraylist</code> listaClientes - retorna uma lista com os dados do select.
-     */
      public static ArrayList<ClienteVip> listarPorNome(String pNome) {
 
         Connection conexao = null;
@@ -274,11 +258,6 @@ public class ClienteDAO {
         return listaClientes;
 
     }
-     /**
-     * Método para excluir os clientes do banco.
-     * @param pIdCliente int - ID do cliente.
-     * @return <code>boolean</code> - true: Conseguiu excluir o cliente, false: Verifique se o cliente já possui cadastro de compra, ou se for erro veja na classe "GerenciadorConexao".
-     */
      public static boolean excluir(int pIdCliente){
     
         boolean retorno = false;
@@ -322,11 +301,6 @@ public class ClienteDAO {
         return retorno;
     
     }
-     /**
-     * Método para alterar o cadastro do cliente no banco.
-     * @param obj Cliente - Objeto da classe cliente
-     * @return <code>boolean</code> - true: Conseguiu alterar o cliente, false: Falha ao alterar, verifique a classe "GerenciadorConexao".
-     */
       public static boolean atualizar(ClienteVip obj) {
         
         boolean retorno = false;

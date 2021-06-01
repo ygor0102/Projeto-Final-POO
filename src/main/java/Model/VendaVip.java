@@ -1,13 +1,13 @@
+/**
+ * @author Ygor Oliveira - Yasmim Candelária - Juan Gonçalves Dias - Filipe Vital da Silva
+ * @since 17/05/2021
+ */
 
 package Model;
 
 import java.util.Date;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author ygor.oliveira
- */
 public class VendaVip extends Venda implements ApplicableDiscount{
     
     private String brindeAdicional;
@@ -87,9 +87,7 @@ public class VendaVip extends Venda implements ApplicableDiscount{
                 brindeVip="Suco natural 150ml";
             }
             
-            return brindeVip;
-    
-        
+            return brindeVip; 
     }
     
 }

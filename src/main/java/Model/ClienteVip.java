@@ -1,3 +1,7 @@
+/**
+ * @author Ygor Oliveira - Yasmim Candelária - Juan Gonçalves Dias - Filipe Vital da Silva
+ * @since 17/05/2021
+ */
 
 package Model;
 import java.util.Date;
@@ -37,7 +41,7 @@ public class ClienteVip extends Cliente implements ApplicableVip {
         this.NivelVip = NivelVip;
     }
     
-    //Vip 01 = 5% de desconto. Cada vip incrementa +5%;
+    //Vip 01 = 5% de desconto. Cada nível vip incrementa +5%;
     @Override
     public double getDescontoFixo(int nivelVip) {
         return nivelVip*0.05;

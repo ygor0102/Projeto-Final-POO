@@ -1,5 +1,9 @@
-package View;
+/**
+ * @author Ygor Oliveira - Yasmim Candelária - Juan Gonçalves Dias - Filipe Vital da Silva
+ * @since 17/05/2021
+ */
 
+package View;
 
 import Controller.ClienteController;
 import Controller.LancheController;
@@ -10,15 +14,8 @@ import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-/**
- * @author Grupo 2 - Projeto Integrador
- * @since 15/09/2020
- */ 
 public class TelaGerencial extends javax.swing.JFrame {
 
-    /**
-     * Creates new form TelaGerencial
-     */
     public TelaGerencial() {
         initComponents();
         setLocationRelativeTo(null);

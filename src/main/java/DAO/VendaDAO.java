@@ -1,7 +1,10 @@
+/**
+ * @author Ygor Oliveira - Yasmim Candelária - Juan Gonçalves Dias - Filipe Vital da Silva
+ * @since 17/05/2021
+ */
 
 package DAO;
 
-import Model.Cliente;
 import Model.Venda;
 import Model.VendaVip;
 import Utils.GerenciadorConexao;
@@ -12,12 +15,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
-
-/**
- * @author Grupo 2 - Projeto Integrador
- * @since 01/11/2020
- */
-
 
 public class VendaDAO {
 
@@ -40,7 +37,7 @@ public class VendaDAO {
             instrucaoSQL.setDouble(2, obj.getPrecoTotal());
             instrucaoSQL.setDouble(3, obj.getDesconto());
             instrucaoSQL.setString(4, obj.getBrindeAdicional());
-            instrucaoSQL.setInt(5, obj.getFkIdCliente());
+            instrucaoSQL.setInt(5, obj.getIdCliente());
             
             int linhasAfetadas = instrucaoSQL.executeUpdate();
             
@@ -131,12 +128,6 @@ public class VendaDAO {
         return listaVendas;
 
     }
-    
-    /**
-     * Método para listar as informações do responsável pela compra (relatório analítico).
-     * @param pIdVenda int - ID da venda.
-     * @return <code>obj</code> retorno - retorna um objeto com os dados do select.
-     */
     public static Venda consultarPorID(int pIdVenda) {
         
         Connection conexao = null;
@@ -156,7 +147,7 @@ public class VendaDAO {
             {
                 VendaVip obj = new VendaVip();
                 obj.setIdVenda(rs.getInt("id_venda"));
-                obj.setFkIdCliente(rs.getInt("fk_id_cliente"));
+                obj.setIdCliente(rs.getInt("fk_id_cliente"));
                 obj.setNome(rs.getString("nome"));
                 obj.setCPF(rs.getString("CPF"));
                 obj.setTelefone(rs.getString("telefone"));

@@ -1,14 +1,13 @@
-
+/**
+ * @author Ygor Oliveira - Yasmim Candelária - Juan Gonçalves Dias - Filipe Vital da Silva
+ * @since 17/05/2021
+ */
 package Controller;
 
 import DAO.ItemVendaDAO;
 import Model.ItemVenda;
 import java.util.ArrayList;
 
-/**
- * @author Grupo 2 - Projeto Integrador
- * @since 01/11/2020
- */
 
 public class ItemVendaController {
   

@@ -1,8 +1,11 @@
+/**
+ * @author Ygor Oliveira - Yasmim Candelária - Juan Gonçalves Dias - Filipe Vital da Silva
+ * @since 17/05/2021
+ */
 
 package Controller;
 
 import DAO.ClienteDAO;
-import Model.Cliente;
 import Model.ClienteVip;
 import java.util.ArrayList;
 import java.util.Date;
@@ -138,7 +141,6 @@ public class ClienteController {
                                  String pVip, int pNivelVip) {
     
         boolean retorno = false;
-        //Recebi os parâmetros da view e criei um objeto da classe nota fiscal
    
         ClienteVip objCliente = new ClienteVip();
 

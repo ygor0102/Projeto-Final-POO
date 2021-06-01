@@ -1,19 +1,15 @@
+/**
+ * @author Ygor Oliveira - Yasmim Candelária - Juan Gonçalves Dias - Filipe Vital da Silva
+ * @since 17/05/2021
+ */
 
 package Controller;
 
-import DAO.ClienteDAO;
 import DAO.VendaDAO;
-import Model.Cliente;
 import Model.Venda;
 import Model.VendaVip;
 import java.util.ArrayList;
 import java.util.Date;
-
-
-/**
- * @author Grupo 2 - Projeto Integrador
- * @since 01/11/2020
- */
 
 public class VendaController {
     
@@ -26,7 +22,7 @@ public class VendaController {
     objVenda.setPrecoTotal(pPrecoTotal);
     objVenda.setDesconto(pDescontoVenda);
     objVenda.setBrindeAdicional(pBrindeVip);
-    objVenda.setFkIdCliente(pFkIdCliente);
+    objVenda.setIdCliente(pFkIdCliente);
     
         try {
             VendaDAO.Salvar(objVenda);
@@ -57,11 +53,6 @@ public class VendaController {
         return listaRetorno;
     }
     
-    /**
-     * Método para listar as vendas a partir do id de venda.
-     * @param idVenda int - Id da venda procurada
-     * @return <code>String[]</code> - Linha gerada a partir deste id.
-     */
     public static String[] consultarPorID(int idVenda) {
     
         Venda obj = VendaDAO.consultarPorID(idVenda);
@@ -70,7 +61,7 @@ public class VendaController {
         
         if(obj.getIdVenda() > 0){
             clienteRetorno = new String[]{String.valueOf(obj.getIdVenda())
-                                        ,String.valueOf(obj.getFkIdCliente())
+                                        ,String.valueOf(obj.getIdCliente())
                                         ,String.valueOf(obj.getNome())
                                         ,String.valueOf(obj.getCPF())
                                         ,String.valueOf(obj.getTelefone())
