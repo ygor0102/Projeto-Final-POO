@@ -15,6 +15,7 @@ import Model.Venda;
 import Model.VendaVip;
 import java.awt.Color;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -660,8 +661,14 @@ public class TelaVendas extends javax.swing.JFrame {
             return;
         }
         
-        int FkIdCliente = idSelecionado;
         Date hoje = new Date();
+
+        Calendar cal = Calendar.getInstance(); 
+        cal.setTime(hoje); 
+        cal.add(Calendar.DATE, 1);
+        hoje = cal.getTime();
+       
+        int FkIdCliente = idSelecionado;
         Double precoTotal = 0.00;
         Double precoUnitario = 0.00;
         
